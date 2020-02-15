@@ -3,7 +3,7 @@ pageCount = input()
 print('Введите номер страницы:')
 pageNumber = input()
 
-def convert_pages_to_tuple(pageCount, pageNumber):
+def create_page_list(pageCount, pageNumber):
     pageCount = int(pageCount)
     pageNumber = int(pageNumber)
 
@@ -14,35 +14,45 @@ def convert_pages_to_tuple(pageCount, pageNumber):
             pageList.append(actualPage)
 
     pageList.append(pageCount)
-
-    return tuple(pageList)
-
-def convert_tuple_to_string(convertibleTuple):
-    pageList = list(convertibleTuple)
     pageList.sort(reverse = True)
-    
-    if (len(pageList) <= 1):
-        result = ','.join(map(str, pageList))
-        return result
-    elif (len(pageList) < 3):
-        result = '...'.join(map(str, pageList))
-        return result
-    else:
-        resultStart = str(pageList[0])
-        del pageList[0]
-        resultEnd = str(pageList[len(pageList) - 1])
-        del pageList[len(pageList) - 1]
-        resultMiddle = ','.join(map(str, pageList))
-        result = f'{resultStart}...{resultMiddle}...{resultEnd}'
-        return result
 
-    return None
+    return pageList
+
+def find_point_positions(pageList):
+    pointPositions = []
+
+    for i in range(len(pageList) - 1):
+        if (pageList[i] - 1 != pageList[i + 1]):
+            pointPositions.append(i)
+
+    return pointPositions
+
+def create_result_list(pageList, pointPositions):
+    resultList = pageList
+    incrementer =  1
+    for i in pointPositions:
+        resultList.insert(i + incrementer, '...')
+        incrementer += 1
+
+    commaPositions = []
+    for i in range(len(resultList) - 1):
+        commaPositions.append(i + 1)
+
+    incrementer =  0
+    for i in commaPositions:
+        resultList.insert(i + incrementer, ',')
+        incrementer += 1
+
+    return resultList
+
 
 def print_string_to_file(text):
     fs = open('output.txt', 'w')
     fs.write(text)
     fs.close()
 
-resultTuple = convert_pages_to_tuple(pageCount, pageNumber)
-resultString = convert_tuple_to_string(resultTuple)
-print_string_to_file(resultString)
+pageList = create_page_list(pageCount, pageNumber)
+pointPositions = find_point_positions(pageList)
+resultList = create_result_list(pageList, pointPositions)
+text = ''.join(map(str, resultList))
+print_string_to_file(text)
