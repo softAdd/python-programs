@@ -48,5 +48,5 @@ pageList = create_page_list(2, 1)
 pageList = create_page_list(3, 2)
 # [1, 2, 3, 4]
 pageList = create_page_list(4, 2)
-# [1, 5, 6, 7, 12]
+# [1, 6, 7, 8, 12]
 pageList = create_page_list(12, 7)
