@@ -1,7 +1,7 @@
 version: '2.4'
 
 services:
-  couchdb:
+  mongodb:
     image: mongo
     container_name: mongodb
     restart: unless-stopped
