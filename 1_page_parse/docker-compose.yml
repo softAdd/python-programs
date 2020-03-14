@@ -1,0 +1,13 @@
+version: '2.4'
+
+services:
+  couchdb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    env_file:
+      - db.env
+    volumes:
+      - ./datadir:/data/db
