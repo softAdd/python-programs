@@ -37,6 +37,10 @@ print('Четные:', even_list)
 print('Каждое третье:', odd_list)
 
 # 7.3
+i = 0
+
 while True:
-  print('ы')
-  break
+  i = i + 1
+  if (i > 10):
+    print(i)
+    break
