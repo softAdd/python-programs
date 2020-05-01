@@ -22,7 +22,7 @@ if re.match(reg_exp, text) is not None:
 else:
   print('Текст не является записью десятичного числа.')
 
-# task 3
+# task 3 -> you can insert also numbers greater than 100
 from word2number.w2n import word_to_num
 from googletrans import Translator
 import re
