@@ -8,3 +8,13 @@ def func1(num):
 func1(PI)
 func1(111)
 func1('string')
+
+# task 2
+def func(n):
+  if n < 3:
+    n = n * 10
+
+  return n
+
+a = 2
+b = func(a)
